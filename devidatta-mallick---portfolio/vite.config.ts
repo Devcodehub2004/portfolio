@@ -4,9 +4,6 @@ import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 import { defineConfig } from 'vite'
 
-export default defineConfig({
-  base: '/devidatta-mallick---portfolio/'
-})
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
