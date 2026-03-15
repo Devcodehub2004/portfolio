@@ -2,7 +2,8 @@ name: Deploy Vite Portfolio to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -20,13 +21,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Clean install dependencies
+      - name: Install dependencies
         run: |
-          rm -rf node_modules
-          rm -f package-lock.json
-          npm cache clean --force
-          npm install
+          rm -rf node_modules package-lock.json
+          npm install --legacy-peer-deps
 
       - name: Build project
         run: npm run build
@@ -37,4 +37,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: devidatta-mallick---portfolio/dist
+          publish_dir: ./devidatta-mallick---portfolio/dist
